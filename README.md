@@ -9,7 +9,11 @@ git clone https://github.com/kkonst40/chat-service.git
 git clone https://github.com/kkonst40/sso-service.git
 ```
 
-Для запуска используется команда:  
-`docker compose up -d --build`  
-или, при наличии Make:  
-`make build`
+Для запуска используется команда:
+```
+docker compose up -d --build`  
+```
+или, при наличии Make:
+```
+make build
+```
