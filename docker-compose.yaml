@@ -56,7 +56,7 @@ services:
       - "5433:5432"
     volumes:
       - sso_pgdata:/var/lib/postgresql/data
-      - ./sso/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+      - ./sso-service/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
@@ -67,7 +67,7 @@ services:
 
   ssoapp:
     build:
-      context: ./sso
+      context: ./sso-service
       dockerfile: Dockerfile
     restart: on-failure
     depends_on:
@@ -93,7 +93,7 @@ services:
       - "5432:5432"
     volumes:
       - chat_pgdata:/var/lib/postgresql/data
-      - ./chat/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+      - ./chat-service/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
@@ -122,7 +122,7 @@ services:
 
   chatapp:
     build:
-      context: ./chat
+      context: ./chat-service
       dockerfile: Dockerfile
     restart: on-failure
     depends_on:
